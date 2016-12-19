@@ -65,6 +65,7 @@ CONTAINER_ID=$(docker run -d \
   --name $NOMAD_DOCKER_CONTAINER_NAME \
   $NOMAD_DOCKER_COMMAND)
 
-echo "Waiting for container $NOMAD_DOCKER_CONTAINER_NAME to finish"
+echo $?
+echo "Waiting for container $NOMAD_DOCKER_CONTAINER_NAME ($CONTAINER_ID) to finish"
 PID=$(ps aux | grep "docker-containerd-shim $CONTAINER_ID" | grep -v "grep" | awk '{print $2}')
 anywait $PID
